@@ -32,7 +32,8 @@ increased by pressing `↑`, and decreased by pressing `↓`.*
 
 *The pause mode, that can be entered by holding down space key. In this mod, the generation
 stop, and wait for you to released the space key, you can then create cells by pressing
-the left mouse click, and kill other by pressing the right mouse click. This mod able zoom and
-camera movement by pressing mouse whell, and then mooving the mouse*
+the left mouse click, and kill other by pressing the right mouse click.*
+
+**Both mods able zoom and camera movement by pressing mouse whell, and then mooving the mouse**
 
 You can quit the game anytime by pressing echap
