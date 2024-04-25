@@ -9,11 +9,11 @@
 
 
 # ifndef WIDTH
-#  define WIDTH 42
+#  define WIDTH 10
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 21
+#  define HEIGHT 10
 # endif
 
 # ifndef MAX_WAIT_TIME
@@ -28,6 +28,24 @@
 #  define PIXEL 50
 # endif
 
+typedef struct	s_data
+{
+	float		zoom;
+	float		mapWidth;
+	float		mapHeight;
+	float		cameraHalfWidth;
+	float		cameraHalfHeight;
+	float		maxCameraX;
+	float		maxCameraY;
+	float		deltaX;
+	float		deltaY;
+	float		mouseWheelMove;
+	int 		mouseX;
+	int 		mouseY;
+	Vector2 	prevMousePos;
+	Vector2 	mousePos;
+}				t_data;
+
 typedef struct s_game
 {
 	char		first_map[HEIGHT + 1][WIDTH + 1];
@@ -36,12 +54,7 @@ typedef struct s_game
 	int			generation;
 	int			paused;
 	size_t		wait_time;
-	int 		mouseX;
-	int 		mouseY;
-	Vector2 	prevMousePos;
-	Vector2 	mousePos;
-	float		zoom;
-	float 		mouseWheelMove;
+	t_data		data;
 	Camera2D 	camera;
 }			t_game;
 
@@ -49,7 +62,7 @@ int	ft_atoi(const char *str);
 
 void	HANDLE_Mouse_Input(t_game *game);
 void	HANDLE_Input(t_game *game);
-void	HANDLE_Pause_Input(t_game *game);
+void	HANDLE_Pause_Input(t_game *game, char map[HEIGHT + 1][WIDTH + 1]);
 
 void	INIT_Map(char map[HEIGHT + 1][WIDTH + 1], int probability);
 void	INIT_Empty_Map(char map[HEIGHT + 1][WIDTH + 1]);

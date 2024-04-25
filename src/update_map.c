@@ -85,8 +85,8 @@ void UPDATE_Map(char p_map[HEIGHT + 1][WIDTH + 1], char n_map[HEIGHT + 1][WIDTH 
 		y++;
 	}
 	printf("Generation %d, %d alive. (speed=%ld)\n", game->generation, game->alive, game->wait_time);
-	if (game->alive == WIDTH * HEIGHT)
-		FREEER(game);
+	//if (game->alive == WIDTH * HEIGHT)
+	//	FREEER(game);
 	BeginDrawing();
 	BeginMode2D(game->camera);
 	DISPLAY_Map(game, n_map);

@@ -19,6 +19,7 @@ void	INIT_Game(t_game *game, int argc, char **argv)
 	game->paused = 0;
 	game->generation= 0;
 	game->wait_time = 50000;
+	game->camera.zoom = 1;
 	INIT_Map(game->first_map, probability);
 	INIT_Empty_Map(game->second_map);
 }

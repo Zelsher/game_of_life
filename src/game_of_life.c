@@ -15,8 +15,8 @@ void	INIT_Window(t_game *game)
 {
 	InitWindow(WIDTH * PIXEL, HEIGHT * PIXEL, "LIVE GAME");
 	ClearBackground(BLACK);
-	game->prevMousePos.x = 0;
-	game->prevMousePos.y = 0;
+	game->data.prevMousePos.x = 0;
+	game->data.prevMousePos.y = 0;
     game->camera.target = (Vector2){ 0 };
     game->camera.offset = (Vector2){ 0, 0};
     game->camera.rotation = 0.0f;
@@ -31,13 +31,12 @@ void	GAME_Of_Life(t_game *game)
 	WAITER(game);
 	while (!WindowShouldClose()) 
 	{
-		if (!game->paused)
-		{		
-			UPDATE_Map(game->first_map, game->second_map, game);
-			UPDATE_Map(game->second_map, game->first_map, game);
-		}
-		else
-			HANDLE_Pause_Input(game);
+		UPDATE_Map(game->first_map, game->second_map, game);
+		while (game->paused)
+			HANDLE_Pause_Input(game, game->second_map);
+		UPDATE_Map(game->second_map, game->first_map, game);
+		while (game->paused)
+			HANDLE_Pause_Input(game, game->first_map);
 	}
 }
 
