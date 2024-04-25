@@ -9,11 +9,23 @@
 
 
 # ifndef WIDTH
-#  define WIDTH 10
+#  define WIDTH 480
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 10
+#  define HEIGHT 270
+# endif
+
+# ifndef PIXEL
+#  define PIXEL 4
+# endif
+
+# ifndef COLOR_DCELL
+#  define COLOR_DCELL RED
+# endif
+
+# ifndef COLOR_ACELL
+#  define COLOR_ACELL BLACK
 # endif
 
 # ifndef MAX_WAIT_TIME
@@ -22,10 +34,6 @@
 
 # ifndef MIN_WAIT_TIME
 #  define MIN_WAIT_TIME 500
-# endif
-
-# ifndef PIXEL
-#  define PIXEL 50
 # endif
 
 typedef struct	s_data
@@ -58,22 +66,19 @@ typedef struct s_game
 	Camera2D 	camera;
 }			t_game;
 
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 
-void	HANDLE_Mouse_Input(t_game *game);
 void	HANDLE_Input(t_game *game);
 void	HANDLE_Pause_Input(t_game *game, char map[HEIGHT + 1][WIDTH + 1]);
 
 void	INIT_Map(char map[HEIGHT + 1][WIDTH + 1], int probability);
 void	INIT_Empty_Map(char map[HEIGHT + 1][WIDTH + 1]);
-void	PRINT_Map(char map[HEIGHT + 1][WIDTH + 1]);
+
 void 	UPDATE_Map(char p_map[HEIGHT + 1][WIDTH + 1], char n_map[HEIGHT + 1][WIDTH + 1], t_game *game);
 void	DISPLAY_Map(t_game *game, char map[HEIGHT + 1][WIDTH + 1]);
-void	MAP_Print(char map[HEIGHT + 1][WIDTH + 1]);
-void	WAITER(t_game *game);
-
-void	GAME_Of_Life(t_game *game);
 
 void	FREEER(t_game *game);
+void	WAITER(t_game *game);
+void	GAME_Of_Life(t_game *game);
 
 #endif

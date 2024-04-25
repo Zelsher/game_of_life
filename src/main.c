@@ -13,12 +13,12 @@ void	INIT_Game(t_game *game, int argc, char **argv)
 	int	probability;
 
 	if (argc < 2)
-		probability = 8; //ft_random(ft_random_seed(0), 100, 0);
+		probability = 8;
 	else
 		probability = ft_atoi(argv[1]);
 	game->paused = 0;
 	game->generation= 0;
-	game->wait_time = 50000;
+	game->wait_time = MIN_WAIT_TIME;
 	game->camera.zoom = 1;
 	INIT_Map(game->first_map, probability);
 	INIT_Empty_Map(game->second_map);

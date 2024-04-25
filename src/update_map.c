@@ -16,9 +16,9 @@ void	DISPLAY_Map(t_game *game, char map[HEIGHT + 1][WIDTH + 1])
 		while (x < WIDTH)
 		{
 			if (map[y][x] == '1')
-				DrawRectangle(x_win, y_win, PIXEL, PIXEL, GRAY);
+				DrawRectangle(x_win, y_win, PIXEL, PIXEL, COLOR_ACELL);
 			else
-				DrawRectangle(x_win, y_win, PIXEL, PIXEL, BLACK);
+				DrawRectangle(x_win, y_win, PIXEL, PIXEL, COLOR_DCELL);
 			x++;
 			x_win += PIXEL;
 		}
@@ -57,7 +57,7 @@ void	UPDATE_Cube(char p_map[HEIGHT + 1][WIDTH + 1], char n_map[HEIGHT + 1][WIDTH
 	int	neighbors;
 
 	neighbors = COUNT_Neighbors(p_map, y, x);
-	if (neighbors < 2 || (neighbors >= 4 && p_map[y][x] == '1'))
+	if (neighbors < 2 || neighbors >= 4)
 		n_map[y][x] = '0';
 	else if (neighbors >  2)
 		n_map[y][x] = '1';
@@ -85,8 +85,8 @@ void UPDATE_Map(char p_map[HEIGHT + 1][WIDTH + 1], char n_map[HEIGHT + 1][WIDTH 
 		y++;
 	}
 	printf("Generation %d, %d alive. (speed=%ld)\n", game->generation, game->alive, game->wait_time);
-	//if (game->alive == WIDTH * HEIGHT)
-	//	FREEER(game);
+	if (game->alive == WIDTH * HEIGHT)
+		FREEER(game);
 	BeginDrawing();
 	BeginMode2D(game->camera);
 	DISPLAY_Map(game, n_map);

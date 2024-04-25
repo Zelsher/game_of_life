@@ -25,7 +25,6 @@ void	CAMERA_Zoom(t_game *game)
 	}
 	if (game->data.zoom > 0 || game->camera.zoom > 1.0f)
 		game->camera.zoom += game->data.zoom * zoomSpeed;
-	//printf("Zoom %f\nTotal Zoom %f\n", game->zoom, game->camera.zoom);
 }
 
 void CAMERA_Moove(t_game *game)
@@ -55,8 +54,7 @@ void CAMERA_Moove(t_game *game)
         game->data.prevMousePos = (Vector2){0};
 }
 
-
-void HANDLE_Mouse_Input(t_game *game)
+void HANDLE_Mouse_Input(t_game *game, char map[HEIGHT + 1][WIDTH + 1])
 {
     if (IsMouseButtonDown(MOUSE_LEFT_BUTTON) || IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
     {
@@ -66,19 +64,20 @@ void HANDLE_Mouse_Input(t_game *game)
         if (game->data.mouseX >= 0 && game->data.mouseX < WIDTH && game->data.mouseY >= 0 && game->data.mouseY < HEIGHT)
         {
             if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
-                game->first_map[game->data.mouseY][game->data.mouseX] = '1';
+                map[game->data.mouseY][game->data.mouseX] = '1';
             else if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
-                game->first_map[game->data.mouseY][game->data.mouseX] = '0';
+                map[game->data.mouseY][game->data.mouseX] = '0';
         }
     }
 }
 
 void	HANDLE_Input(t_game *game)
 {
+	CAMERA_Moove(game);
 	if (IsKeyDown(KEY_DOWN) && game->wait_time < MAX_WAIT_TIME)
-		game->wait_time += 100;
+		game->wait_time += 1000;
 	else if (IsKeyDown(KEY_UP) && game->wait_time > MIN_WAIT_TIME)
-		game->wait_time -= 100;
+		game->wait_time -= 1000;
 	if (IsKeyReleased(KEY_SPACE) || IsKeyDown(KEY_SPACE))
 		game->paused = 1;
 	if (IsKeyReleased(KEY_ESCAPE) || IsKeyDown(KEY_ESCAPE))
@@ -87,19 +86,15 @@ void	HANDLE_Input(t_game *game)
 
 void	HANDLE_Pause_Input(t_game *game, char map[HEIGHT + 1][WIDTH + 1])
 {
-	HANDLE_Mouse_Input(game);
-	HANDLE_Input(game);
-	if (game->paused == 2 && IsKeyReleased(KEY_SPACE))
-		game->paused = 0;
+	HANDLE_Mouse_Input(game, map);
 	if (IsKeyUp(KEY_SPACE))
-		game->paused = 2;
+		game->paused = 0;
 	if (IsKeyReleased(KEY_ESCAPE))
 		exit(0);
 	BeginDrawing();
 	BeginMode2D(game->camera);
-	//ClearBackground(BLACK);
 	DISPLAY_Map(game, map);
-	CAMERA_Moove(game);
+	HANDLE_Input(game);
 	EndMode2D();
 	EndDrawing();
 }

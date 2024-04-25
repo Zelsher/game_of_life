@@ -13,7 +13,7 @@ void	WAITER(t_game *game)
 
 void	INIT_Window(t_game *game)
 {
-	InitWindow(WIDTH * PIXEL, HEIGHT * PIXEL, "LIVE GAME");
+	InitWindow(WIDTH * PIXEL, HEIGHT * PIXEL, "Game Of Life");
 	ClearBackground(BLACK);
 	game->data.prevMousePos.x = 0;
 	game->data.prevMousePos.y = 0;
@@ -21,14 +21,17 @@ void	INIT_Window(t_game *game)
     game->camera.offset = (Vector2){ 0, 0};
     game->camera.rotation = 0.0f;
     game->camera.zoom = 1.0f;
-	printf("ZOOM %f", game->camera.zoom);
 }
 
 void	GAME_Of_Life(t_game *game)
 {
 	INIT_Window(game);
+	BeginDrawing();
+	BeginMode2D(game->camera);
 	DISPLAY_Map(game, game->first_map);
 	WAITER(game);
+	EndMode2D();
+	EndDrawing();
 	while (!WindowShouldClose()) 
 	{
 		UPDATE_Map(game->first_map, game->second_map, game);
