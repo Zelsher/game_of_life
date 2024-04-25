@@ -15,7 +15,7 @@ You can simply compile the project by using make, then run it with
 `probability_of_spawn` : The chance in percent that every cells on the map start by 
 						 being alive at the first generation.
 
-If the programme receive no arguments, `probability_of_spawn = 8`.
+If the program receive no arguments, `probability_of_spawn = 8`.
 
 You can modifie the size of the windows by modifiying the constants : HEIGHT & WIDTH, at the
 compilation or in the inc/game_of_life.h file and make re. The PIXEL constant stand for the pixel scale
