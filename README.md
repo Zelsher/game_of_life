@@ -34,11 +34,11 @@ increased by pressing `↑`, and decreased by pressing `↓`.*
 stop, and wait for you to released the space key, you can then create cells by pressing
 the left mouse click, and kill other by pressing the right mouse click.*
 
-**Both mods able zoom and camera movement by pressing mouse whell, and then mooving the mouse**
+**Both state able zoom and camera movement by pressing mouse whell, and then mooving the mouse**
 
 
 
-# Mod game_of_life
+# Mods game_of_life
 
 Mod allows you to put some known structure of the game_of_life instead of a single cell.
 
