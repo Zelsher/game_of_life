@@ -15,7 +15,7 @@ You can simply compile the project by using make, then run it with
 `probability_of_spawn` : The chance in percent that every cells on the map start by 
 						 being alive at the first generation.
 
-If the program receive no arguments, `probability_of_spawn = 8`.
+If the programme receive no arguments, `probability_of_spawn = 8`.
 
 You can modifie the size of the windows by modifiying the constants : HEIGHT & WIDTH, at the
 compilation or in the inc/game_of_life.h file and make re. The PIXEL constant stand for the pixel scale
@@ -25,15 +25,29 @@ of every cells on the map.
 
 # Control game_of_life
 
-There is two mod :
+There is two state possible :
 
-*The generation mod, the map will update, generation by generation, by the speed that you can
+*The generation state, the map will update, generation by generation, by the speed that you can
 increased by pressing `↑`, and decreased by pressing `↓`.*
 
-*The pause mode, that can be entered by holding down space key. In this mod, the generation
+*The pause state, that can be entered by holding down space key. In this mod, the generation
 stop, and wait for you to released the space key, you can then create cells by pressing
 the left mouse click, and kill other by pressing the right mouse click.*
 
 **Both mods able zoom and camera movement by pressing mouse whell, and then mooving the mouse**
 
-You can quit the game anytime by pressing echap
+
+
+# Mod game_of_life
+
+Mod allows you to put some known structure of the game_of_life instead of a single cell.
+
+*Press `1` to enter the classic mod and put a single cell by click*
+
+*Press `2` to enter the glider mod and put a glider by click*
+
+*Press `3` to enter the spaceship mod and put a glider by click*
+
+**Those mod can be used only in pause state**
+
+You can quit the game anytime by pressing echap.

@@ -61,12 +61,16 @@ typedef struct s_game
 	int			alive;
 	int			generation;
 	int			paused;
+	int			mod;
 	size_t		wait_time;
 	t_data		data;
 	Camera2D 	camera;
 }			t_game;
 
 int		ft_atoi(const char *str);
+
+void 	PUT_Glider(t_game *game, char map[HEIGHT + 1][WIDTH + 1]);
+void 	PUT_Spaceship(t_game *game, char map[HEIGHT + 1][WIDTH + 1]);
 
 void	HANDLE_Input(t_game *game);
 void	HANDLE_Pause_Input(t_game *game, char map[HEIGHT + 1][WIDTH + 1]);
@@ -77,7 +81,7 @@ void	INIT_Empty_Map(char map[HEIGHT + 1][WIDTH + 1]);
 void 	UPDATE_Map(char p_map[HEIGHT + 1][WIDTH + 1], char n_map[HEIGHT + 1][WIDTH + 1], t_game *game);
 void	DISPLAY_Map(t_game *game, char map[HEIGHT + 1][WIDTH + 1]);
 
-void	FREEER(t_game *game);
+void	CLOSER(t_game *game);
 void	WAITER(t_game *game);
 void	GAME_Of_Life(t_game *game);
 

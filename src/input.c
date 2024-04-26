@@ -63,10 +63,14 @@ void HANDLE_Mouse_Input(t_game *game, char map[HEIGHT + 1][WIDTH + 1])
         game->data.mouseY = (int)((((game->data.mousePos.y - game->camera.offset.y) / game->camera.zoom) + game->camera.target.y) / PIXEL);
         if (game->data.mouseX >= 0 && game->data.mouseX < WIDTH && game->data.mouseY >= 0 && game->data.mouseY < HEIGHT)
         {
-            if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
-                map[game->data.mouseY][game->data.mouseX] = '1';
-            else if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
+			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
                 map[game->data.mouseY][game->data.mouseX] = '0';
+            else if (game->mod == 0 && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+                map[game->data.mouseY][game->data.mouseX] = '1';
+			if (game->mod == 1 && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+				PUT_Glider(game, map);
+			else if (game->mod == 2 && IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+				PUT_Spaceship(game, map);
         }
     }
 }
@@ -78,10 +82,16 @@ void	HANDLE_Input(t_game *game)
 		game->wait_time += 1000;
 	else if (IsKeyDown(KEY_UP) && game->wait_time > MIN_WAIT_TIME)
 		game->wait_time -= 1000;
+	if (IsKeyDown(KEY_ONE) && game->wait_time < MAX_WAIT_TIME)
+		game->mod = 0;
+	if (IsKeyDown(KEY_TWO) && game->wait_time < MAX_WAIT_TIME)
+		game->mod = 1;
+	if (IsKeyDown(KEY_THREE) && game->wait_time < MAX_WAIT_TIME)
+		game->mod = 2;
 	if (IsKeyReleased(KEY_SPACE) || IsKeyDown(KEY_SPACE))
 		game->paused = 1;
 	if (IsKeyReleased(KEY_ESCAPE) || IsKeyDown(KEY_ESCAPE))
-		exit(0);
+		CLOSER(0);
 }
 
 void	HANDLE_Pause_Input(t_game *game, char map[HEIGHT + 1][WIDTH + 1])

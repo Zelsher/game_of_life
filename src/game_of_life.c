@@ -1,16 +1,5 @@
 #include "../inc/game_of_life.h"
 
-void	WAITER(t_game *game)
-{
-	int	i;
-	while (i < 10)
-	{
-		usleep(game->wait_time);
-		HANDLE_Input(game);
-		i++;
-	}
-}
-
 void	INIT_Window(t_game *game)
 {
 	InitWindow(WIDTH * PIXEL, HEIGHT * PIXEL, "Game Of Life");

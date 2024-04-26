@@ -24,3 +24,13 @@ int	ft_atoi(const char *str)
 	}
 	return (result * minus);
 }
+void	WAITER(t_game *game)
+{
+	int	i;
+	while (i < 10)
+	{
+		usleep(game->wait_time);
+		HANDLE_Input(game);
+		i++;
+	}
+}

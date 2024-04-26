@@ -1,6 +1,6 @@
 #include "../inc/game_of_life.h"
 
-void	FREEER(t_game *game)
+void	CLOSER(t_game *game)
 {
 	if (game->alive == WIDTH * HEIGHT)
 		printf("Specys invaded all the map after generation %d.\n", game->generation);
@@ -20,6 +20,7 @@ void	INIT_Game(t_game *game, int argc, char **argv)
 	game->generation= 0;
 	game->wait_time = MIN_WAIT_TIME;
 	game->camera.zoom = 1;
+	game->mod = 0;
 	INIT_Map(game->first_map, probability);
 	INIT_Empty_Map(game->second_map);
 }

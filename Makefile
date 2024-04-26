@@ -14,6 +14,7 @@ SRC			= $(SRC_DIR)main.c \
 			  $(SRC_DIR)update_map.c \
 			  $(SRC_DIR)utils.c \
 			  $(SRC_DIR)input.c \
+			  $(SRC_DIR)mod.c \
 			  $(SRC_DIR)init_map.c
 
 OBJ 		= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC))
