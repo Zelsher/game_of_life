@@ -17,9 +17,9 @@ You can simply compile the project by using make, then run it with
 
 If the programme receive no arguments, `probability_of_spawn = 8`.
 
-You can modifie the size of the windows by modifiying the constants : HEIGHT & WIDTH, at the
+**You can modifie the size of the windows by modifiying the constants : HEIGHT & WIDTH, at the
 compilation or in the inc/game_of_life.h file and make re. The PIXEL constant stand for the pixel scale
-of every cells on the map.
+of every cells on the map. Color of the dead and alive cells are also define by the constants : COLOR_DCELL and COLOR_ACELL**
 
 
 
